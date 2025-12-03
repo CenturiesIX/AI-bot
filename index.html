@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offline Code Debugger</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm"></script>
+</head>
+<body>
+<div class="overlay" id="overlay">
+<div class="spinner"></div>
+<div class="overlay-text">Loading model…</div>
+</div>
+<div class="app" id="app">
+<header class="top-bar">
+<div class="brand">Local Code Debugger</div>
+<div class="status-bar">Status: <span id="status-text">Initializing</span></div>
+</header>
+<main class="layout">
+<section class="panel input-panel">
+<div class="panel-header">
+<div class="panel-title">Code Input</div>
+<div class="controls">
+<select id="language-select">
+<option>JavaScript</option>
+<option>Python</option>
+<option>C</option>
+<option>HTML</option>
+<option>CSS</option>
+<option>Other</option>
+</select>
+<button id="debug-btn">Debug Code</button>
+</div>
+</div>
+<textarea id="code-input" spellcheck="false"></textarea>
+<div class="analyzing" id="analyzing">Analyzing…</div>
+</section>
+<section class="panel output-panel">
+<div class="panel-header">
+<div class="panel-title">Debugging Output</div>
+<div class="panel-sub">Results will appear here</div>
+</div>
+<div class="output" id="output"></div>
+</section>
+</main>
+<footer class="footer">
+<div class="progress-label">Model Load:</div>
+<div class="progress-track">
+<div class="progress-fill" id="progress-fill"></div>
+</div>
+<div class="progress-percent" id="progress-percent">0%</div>
+</footer>
+</div>
+<script type="module" src="script.js"></script>
+</body>
+</html>
