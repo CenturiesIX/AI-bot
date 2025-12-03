@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 20% 20%,#f0f4ff,#ffffff 40%),radial-gradient(circle at 80% 0%,#e6f7ff,#ffffff 35%),#f8f9fb;color:#111;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+.chat-shell{width:100%;max-width:960px;display:flex;justify-content:center;align-items:center}
+.chat-container{background:#fff;border-radius:24px;box-shadow:0 15px 60px rgba(17,24,39,0.12);width:100%;max-width:760px;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.chat-header{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:linear-gradient(120deg,#4f46e5,#7c3aed);color:#fff}
+.title{font-size:18px;font-weight:700;letter-spacing:0.3px}
+.status{font-size:13px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.18);backdrop-filter:blur(6px);box-shadow:0 0 0 1px rgba(255,255,255,0.15)}
+.messages{flex:1;padding:22px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;background:linear-gradient(180deg,#f7f8fb 0%,#ffffff 90%)}
+.message{max-width:78%;padding:14px 16px;border-radius:18px;box-shadow:0 10px 28px rgba(15,23,42,0.08);line-height:1.5;transform:translateY(6px);opacity:0;animation:slideIn 0.35s ease forwards}
+.user{margin-left:auto;background:#4f46e5;color:#fff;border-bottom-right-radius:6px}
+.bot{margin-right:auto;background:#f4f5fb;color:#111;border-bottom-left-radius:6px}
+.input-bar{display:flex;gap:10px;padding:14px 16px;background:rgba(79,70,229,0.06);border-top:1px solid rgba(15,23,42,0.05)}
+#user-input{flex:1;resize:none;border:none;outline:none;background:#fff;border-radius:14px;padding:12px 14px;font-size:15px;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.04);transition:box-shadow 0.2s ease}
+#user-input:focus{box-shadow:0 0 0 2px rgba(79,70,229,0.25)}
+#send-btn{background:linear-gradient(120deg,#4f46e5,#7c3aed);color:#fff;border:none;border-radius:14px;padding:0 18px;font-weight:600;cursor:pointer;transition:transform 0.15s ease,box-shadow 0.15s ease;box-shadow:0 12px 24px rgba(79,70,229,0.28)}
+#send-btn:disabled{opacity:0.6;cursor:not-allowed;box-shadow:none}
+#send-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 14px 32px rgba(79,70,229,0.34)}
+.loading-screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#f8f9fb;z-index:20;transition:opacity 0.35s ease,visibility 0.35s ease}
+.spinner{width:70px;height:70px;border-radius:50%;border:7px solid #e0e7ff;border-top-color:#4f46e5;animation:spin 1s linear infinite}
+.loading-text{font-size:16px;color:#4b5563;font-weight:600}
+.loading-screen.hidden{opacity:0;visibility:hidden}
+.thinking{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);padding:12px 16px;background:#111827;color:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.24);opacity:0;pointer-events:none;transition:opacity 0.2s ease,transform 0.2s ease;z-index:10}
+.thinking.visible{opacity:1;transform:translate(-50%,-4px)}
+@keyframes slideIn{to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:640px){body{padding:16px}.chat-container{border-radius:18px}.message{max-width:92%}.input-bar{flex-direction:column}#send-btn{width:100%;padding:12px 0}}
