@@ -1,27 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 20% 20%,#f0f4ff,#ffffff 40%),radial-gradient(circle at 80% 0%,#e6f7ff,#ffffff 35%),#f8f9fb;color:#111;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
-.chat-shell{width:100%;max-width:960px;display:flex;justify-content:center;align-items:center}
-.chat-container{background:#fff;border-radius:24px;box-shadow:0 15px 60px rgba(17,24,39,0.12);width:100%;max-width:760px;display:flex;flex-direction:column;overflow:hidden;position:relative}
-.chat-header{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:linear-gradient(120deg,#4f46e5,#7c3aed);color:#fff}
-.title{font-size:18px;font-weight:700;letter-spacing:0.3px}
-.status{font-size:13px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.18);backdrop-filter:blur(6px);box-shadow:0 0 0 1px rgba(255,255,255,0.15)}
-.messages{flex:1;padding:22px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;background:linear-gradient(180deg,#f7f8fb 0%,#ffffff 90%)}
-.message{max-width:78%;padding:14px 16px;border-radius:18px;box-shadow:0 10px 28px rgba(15,23,42,0.08);line-height:1.5;transform:translateY(6px);opacity:0;animation:slideIn 0.35s ease forwards}
-.user{margin-left:auto;background:#4f46e5;color:#fff;border-bottom-right-radius:6px}
-.bot{margin-right:auto;background:#f4f5fb;color:#111;border-bottom-left-radius:6px}
-.input-bar{display:flex;gap:10px;padding:14px 16px;background:rgba(79,70,229,0.06);border-top:1px solid rgba(15,23,42,0.05)}
-#user-input{flex:1;resize:none;border:none;outline:none;background:#fff;border-radius:14px;padding:12px 14px;font-size:15px;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.04);transition:box-shadow 0.2s ease}
-#user-input:focus{box-shadow:0 0 0 2px rgba(79,70,229,0.25)}
-#send-btn{background:linear-gradient(120deg,#4f46e5,#7c3aed);color:#fff;border:none;border-radius:14px;padding:0 18px;font-weight:600;cursor:pointer;transition:transform 0.15s ease,box-shadow 0.15s ease;box-shadow:0 12px 24px rgba(79,70,229,0.28)}
-#send-btn:disabled{opacity:0.6;cursor:not-allowed;box-shadow:none}
-#send-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 14px 32px rgba(79,70,229,0.34)}
-.loading-screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#f8f9fb;z-index:20;transition:opacity 0.35s ease,visibility 0.35s ease}
-.spinner{width:70px;height:70px;border-radius:50%;border:7px solid #e0e7ff;border-top-color:#4f46e5;animation:spin 1s linear infinite}
-.loading-text{font-size:16px;color:#4b5563;font-weight:600}
-.loading-screen.hidden{opacity:0;visibility:hidden}
-.thinking{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);padding:12px 16px;background:#111827;color:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.24);opacity:0;pointer-events:none;transition:opacity 0.2s ease,transform 0.2s ease;z-index:10}
-.thinking.visible{opacity:1;transform:translate(-50%,-4px)}
-@keyframes slideIn{to{opacity:1;transform:translateY(0)}}
+:root{--bg:#0f172a;--card:#11192f;--accent:#6dd3ff;--accent-2:#a78bfa;--text:#e2e8f0;--muted:#94a3b8;--shadow:0 20px 40px rgba(0,0,0,0.35);--radius:18px;--transition:0.25s ease}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:radial-gradient(circle at 20% 20%,rgba(109,211,255,0.12),transparent 35%),radial-gradient(circle at 80% 10%,rgba(167,139,250,0.12),transparent 35%),radial-gradient(circle at 10% 70%,rgba(125,211,252,0.08),transparent 40%),#0a0f1f;color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:36px}
+.app{width:100%;max-width:1100px;background:linear-gradient(135deg,rgba(17,25,47,0.92),rgba(13,18,35,0.94));border:1px solid rgba(255,255,255,0.05);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(12px);overflow:hidden;display:flex;flex-direction:column;gap:0}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,0.06);background:linear-gradient(90deg,rgba(109,211,255,0.08),rgba(167,139,250,0.08))}
+.brand{font-weight:700;letter-spacing:0.5px;font-size:1.05rem}
+.status-bar{color:var(--muted);font-size:0.95rem}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:18px}
+.panel{background:var(--card);border-radius:var(--radius);padding:16px 16px 18px;border:1px solid rgba(255,255,255,0.06);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.panel-header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.panel-title{font-weight:700;letter-spacing:0.3px}
+.panel-sub{color:var(--muted);font-size:0.95rem}
+.controls{display:flex;gap:10px;align-items:center}
+select{background:rgba(255,255,255,0.06);color:var(--text);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px 12px;font-size:0.95rem;transition:var(--transition);outline:none}
+select:focus{border-color:var(--accent)}
+button{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b1020;border:none;border-radius:12px;padding:12px 16px;font-weight:700;letter-spacing:0.3px;cursor:pointer;box-shadow:0 12px 24px rgba(109,211,255,0.25);transition:transform var(--transition),box-shadow var(--transition),filter var(--transition)}
+button:hover{transform:translateY(-1px);box-shadow:0 18px 30px rgba(167,139,250,0.3);filter:brightness(1.05)}
+button:disabled{opacity:0.6;cursor:not-allowed;transform:none;box-shadow:none}
+textarea{background:rgba(8,11,22,0.8);color:var(--text);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:14px;font-size:0.95rem;line-height:1.5;font-family:'JetBrains Mono','Fira Code','SFMono-Regular',monospace;min-height:420px;resize:none;outline:none;transition:border-color var(--transition),box-shadow var(--transition);white-space:pre}
+textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(109,211,255,0.2)}
+.output{background:rgba(8,11,22,0.9);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:14px;font-family:'JetBrains Mono','Fira Code','SFMono-Regular',monospace;line-height:1.5;overflow:auto;flex:1;white-space:pre-wrap;word-break:break-word;min-height:420px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.02)}
+.analyzing{position:absolute;bottom:16px;right:18px;background:rgba(167,139,250,0.18);color:var(--text);padding:8px 12px;border-radius:999px;font-weight:700;letter-spacing:0.3px;opacity:0;transform:translateY(10px);transition:var(--transition)}
+.analyzing.active{opacity:1;transform:translateY(0)}
+.footer{display:flex;align-items:center;gap:12px;padding:14px 18px;border-top:1px solid rgba(255,255,255,0.06);background:rgba(12,17,30,0.9)}
+.progress-label{color:var(--muted);font-size:0.95rem}
+.progress-track{flex:1;height:10px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;position:relative}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width 0.2s ease}
+.progress-percent{font-weight:700;color:var(--text)}
+.overlay{position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(109,211,255,0.12),transparent 35%),radial-gradient(circle at 80% 10%,rgba(167,139,250,0.12),transparent 35%),#050814;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;z-index:10}
+.spinner{width:64px;height:64px;border-radius:50%;border:6px solid rgba(255,255,255,0.08);border-top-color:var(--accent);animation:spin 1s linear infinite;box-shadow:0 0 0 4px rgba(109,211,255,0.08)}
+.overlay-text{color:var(--text);font-weight:700;letter-spacing:0.4px;font-size:1.05rem}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media (max-width:640px){body{padding:16px}.chat-container{border-radius:18px}.message{max-width:92%}.input-bar{flex-direction:column}#send-btn{width:100%;padding:12px 0}}
+@media (max-width:960px){body{padding:18px}.layout{grid-template-columns:1fr;grid-template-rows:auto auto}.controls{flex-wrap:wrap;justify-content:space-between}.output,.input-panel textarea{min-height:320px}}
